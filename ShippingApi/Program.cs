@@ -43,6 +43,7 @@ builder.Services.Configure<DbConnectionOptions>(options =>
 // Add Service
 builder.Services.AddScoped<ITipoPaqueteService, TipoPaqueteService>();
 builder.Services.AddScoped<IRemitenteService, RemitenteService>();
+builder.Services.AddScoped<IPaqueteService, PaqueteService>();
 
 // Add repository
 builder.Services.AddScoped<ITipoPaqueteRepository, TipoPaqueteRepository>();

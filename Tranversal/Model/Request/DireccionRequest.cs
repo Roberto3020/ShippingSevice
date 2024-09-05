@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tranversal.DTO.Request
+namespace Tranversal.Model.Request
 {
-    public class DireccionRequestDTO
+    public class DireccionRequest
     {
         public string Calle { get; set; }
         public string Pais { get; set; }

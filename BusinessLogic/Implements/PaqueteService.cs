@@ -1,4 +1,5 @@
-﻿using BusinessLogic.Model;
+﻿using BusinessLogic.Abstract;
+using BusinessLogic.Model;
 using BusinessLogic.Service.Helpers;
 using DataAccess.Abstract;
 using System;
@@ -10,7 +11,7 @@ using Tranversal.Model.Request;
 
 namespace BusinessLogic.Implements
 {
-    public class PaqueteService
+    public class PaqueteService: IPaqueteService
     {
         private readonly IRemitenteRepository _repository;
 

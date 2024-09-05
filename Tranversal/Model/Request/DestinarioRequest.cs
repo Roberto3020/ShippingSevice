@@ -9,5 +9,6 @@
         public string Correo { get; set; }
         public int TipoIdentificacion { get; set; }
         public string Identificacion { get; set; }
+        public DireccionRequest Direccion { get; set; }
     }
 }
