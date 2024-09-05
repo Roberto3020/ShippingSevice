@@ -13,6 +13,7 @@ namespace Tranversal.Model
         public string Descripcion { get; set; }
 
         public double Peso { get; set; }
+        public int Cantidad { get; set; }
         public int RemitenteId { get; set; }
         public int DestinarioId { get; set; }
         public DateTime FechaCreacion { get; set; }

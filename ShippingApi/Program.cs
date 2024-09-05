@@ -1,4 +1,6 @@
 using DataAccess;
+using DataAccess.Abstract;
+using DataAccess.Implements;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -11,6 +13,7 @@ var nameApp = builder.Configuration.GetSection("NameApp").Value;
 var defaultConnection = builder.Configuration.GetConnectionString("DefaultConnetion");
 
 
+
 // Add minimal services
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
@@ -20,11 +23,15 @@ builder.Services.AddScoped(typeof(IPasswordHasher<>), typeof(PasswordHasher<>));
 
 builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 builder.Services.AddScoped<IUrlHelper>(factory =>
 {
     var actionContext = factory.GetRequiredService<IActionContextAccessor>().ActionContext!;
     return new UrlHelper(actionContext);
 });
+
+//Add repository
+builder.Services.AddScoped<ITipoPaqueteRepository, TipoPaqueteRepository>();
 
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
