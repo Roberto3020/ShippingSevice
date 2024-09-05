@@ -21,4 +21,8 @@
     <ProjectReference Include="..\Tranversal\Tranversal.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helpers\ApiGeneral\" />
+  </ItemGroup>
+
 </Project>
