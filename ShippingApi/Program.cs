@@ -44,6 +44,7 @@ builder.Services.Configure<DbConnectionOptions>(options =>
 builder.Services.AddScoped<ITipoPaqueteService, TipoPaqueteService>();
 builder.Services.AddScoped<IRemitenteService, RemitenteService>();
 builder.Services.AddScoped<IPaqueteService, PaqueteService>();
+builder.Services.AddScoped<ITypeDocuments, TypeDocumentService>();
 
 // Add repository
 builder.Services.AddScoped<ITipoPaqueteRepository, TipoPaqueteRepository>();
@@ -51,6 +52,8 @@ builder.Services.AddScoped<IPaqueteRepository, PaqueteRepository>();
 builder.Services.AddScoped<IRemitenteRepository, RemitenteRepsository>();
 builder.Services.AddScoped<IDestinarioRepository, DestinarioRepsository>();
 builder.Services.AddScoped<IDireccionRepository, DireccionRepository>();
+
+builder.Services.AddScoped<ITypeDocumentsRepository, TypeDocumentRepository>();
 
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
