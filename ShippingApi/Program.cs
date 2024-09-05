@@ -1,3 +1,5 @@
+using BusinessLogic.Abstract;
+using BusinessLogic.Implements;
 using DataAccess;
 using DataAccess.Abstract;
 using DataAccess.Implements;
@@ -5,14 +7,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
+using ShippingApi.Helpers.ApiGeneral;
+using ShippingApi.Infrastructure.AutoMapper.Profiles;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var nameApp = builder.Configuration.GetSection("NameApp").Value;
-var defaultConnection = builder.Configuration.GetConnectionString("DefaultConnetion");
-
-
+var defaultConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 
 // Add minimal services
 builder.Services.AddControllersWithViews();
@@ -21,6 +23,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped(typeof(IPasswordHasher<>), typeof(PasswordHasher<>));
 
+// Add essential services for MVC and HttpContext
 builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -30,16 +33,6 @@ builder.Services.AddScoped<IUrlHelper>(factory =>
     return new UrlHelper(actionContext);
 });
 
-//Add repository
-builder.Services.AddScoped<ITipoPaqueteRepository, TipoPaqueteRepository>();
-
-builder.Services.AddControllers().AddJsonOptions(options =>
-{
-    options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
-});
-
-
-// Add services.
 builder.Services.AddScoped<DapperContext>();
 builder.Services.Configure<DbConnectionOptions>(options =>
 {
@@ -47,15 +40,22 @@ builder.Services.Configure<DbConnectionOptions>(options =>
     options.CommandTimeout = 120;
 });
 
-// Add services to the container.
+// Add Service
+builder.Services.AddScoped<ITipoPaqueteService, TipoPaqueteService>();
 
+// Add repository
+builder.Services.AddScoped<ITipoPaqueteRepository, TipoPaqueteRepository>();
 
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+});
 
+builder.Services.AddSwaggerService();
+builder.Services.AddMappingService();
+builder.Services.AddCorsService();
 
-
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
@@ -68,9 +68,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
