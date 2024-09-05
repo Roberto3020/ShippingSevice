@@ -23,6 +23,7 @@ namespace DataAccess.Implements
             parameters.Add("Departamento", request.Departamento);
             parameters.Add("Ciudad", request.Ciudad);
             parameters.Add("Identificacion", request.Identificacion);
+            parameters.Add("TipoIdentificacion", request.TipoIdentificacion);
             parameters.Add("Success", dbType: DbType.Int32, direction: ParameterDirection.Output);
             parameters.Add("Id", dbType: DbType.Guid, direction: ParameterDirection.Output);
 

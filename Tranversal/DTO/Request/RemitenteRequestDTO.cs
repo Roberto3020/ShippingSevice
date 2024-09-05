@@ -10,5 +10,7 @@
 
         public string Identificacion { get; set; }
         public Guid? Id { get; set; }
+
+        public int TipoIdentificacion { get; set; }
     }
 }
