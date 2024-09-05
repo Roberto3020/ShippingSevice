@@ -15,6 +15,10 @@ namespace ShippingApi.Infrastructure.AutoMapper.Profiles
             CreateMap(typeof(ServiceResponse<>), typeof(ServiceResponse<>));
 
             CreateMap<RemitenteRequestDTO,RemitenteRequest>();
+
+            CreateMap<DestinarioRequestDTO, DestinarioRequest>();
+
+            CreateMap<PaqueteRequestDTO, PaqueteRequest>();
         }
     }
 }
