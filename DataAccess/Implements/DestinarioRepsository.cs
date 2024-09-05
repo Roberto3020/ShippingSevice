@@ -5,15 +5,15 @@ using Tranversal.ProcedureMaps;
 
 namespace DataAccess.Implements
 {
-    public class RemitenteRepsository:IRemitenteRepository
+    public class DestinarioRepsository: IDestinarioRepository
     {
         private readonly DapperContext context;
 
-        public RemitenteRepsository(DapperContext context)
+        public DestinarioRepsository(DapperContext context)
         {
             this.context = context;
         }
-        public async Task<int> CreateRemitente(RemitenteRequest request)
+        public async Task<int> CreateDestinario(RemitenteRequest request)
         {
             var parameters = new DynamicParameters();
             parameters.Add("NombreCompleto", request.NombreCompleto);

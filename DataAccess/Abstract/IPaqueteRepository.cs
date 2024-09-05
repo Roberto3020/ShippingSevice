@@ -4,6 +4,6 @@ namespace DataAccess.Abstract
 {
     public interface IPaqueteRepository
     {
-        Task<int> GetAllTypePackage(PaqueteRequest request);
+        Task<int> CreatePaquete(PaqueteRequest request);
     }
 }

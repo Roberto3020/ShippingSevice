@@ -1,10 +1,11 @@
 ﻿using Dapper;
+using DataAccess.Abstract;
 using Tranversal.Model.Request;
 using Tranversal.ProcedureMaps;
 
 namespace DataAccess.Implements
 {
-    public class PaqueteRepository
+    public class PaqueteRepository:IPaqueteRepository
     {
         private readonly DapperContext context;
 
@@ -12,7 +13,7 @@ namespace DataAccess.Implements
         {
             this.context = context;
         }
-        public async Task<int> GetAllTypePackage(PaqueteRequest request)
+        public async Task<int> CreatePaquete(PaqueteRequest request)
         {
             var parameters = new DynamicParameters();
             parameters.Add("Descripcion", request.Descripcion);
