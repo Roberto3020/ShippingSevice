@@ -14,16 +14,17 @@ namespace BusinessLogic.Implements
     public class PaqueteService: IPaqueteService
     {
         private readonly IRemitenteRepository _repository;
-
         private readonly IDestinarioRepository _repositoryDestinario;
-
         private readonly IPaqueteRepository _repositoryPaquete;
+        private readonly IDireccionRepository _direccionRepository;
 
-        public PaqueteService(IRemitenteRepository repository, IDestinarioRepository repositoryDestinario, IPaqueteRepository repositoryPaquete)
+        public PaqueteService(IRemitenteRepository repository, IDestinarioRepository repositoryDestinario,
+            IPaqueteRepository repositoryPaquete, IDireccionRepository direccionRepository)
         {
             _repository = repository;
             _repositoryDestinario = repositoryDestinario;
             _repositoryPaquete = repositoryPaquete;
+            _direccionRepository = direccionRepository;
         }
 
         public async Task<ServiceResponse<string>> CrearPaquete(PaqueteCreateRequest request)
@@ -32,8 +33,11 @@ namespace BusinessLogic.Implements
             var createDestinario = await _repositoryDestinario.CreateDestinario(request.destinario);
             if (createRemitente.Succes > 0 && createDestinario.Succes > 0)
             {
+
                 request.paquete.RemitenteId = createRemitente.Id;
                 request.paquete.DestinarioId = createDestinario.Id;
+                request.destinario.Direccion.DestinarioId = createDestinario.Id;
+                var creacionDireccion = _direccionRepository.CrearDireccion(request.destinario.Direccion);
                 var createPaquete = await _repositoryPaquete.CreatePaquete(request.paquete);
             };
 

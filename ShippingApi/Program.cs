@@ -50,6 +50,7 @@ builder.Services.AddScoped<ITipoPaqueteRepository, TipoPaqueteRepository>();
 builder.Services.AddScoped<IPaqueteRepository, PaqueteRepository>();
 builder.Services.AddScoped<IRemitenteRepository, RemitenteRepsository>();
 builder.Services.AddScoped<IDestinarioRepository, DestinarioRepsository>();
+builder.Services.AddScoped<IDireccionRepository, DireccionRepository>();
 
 builder.Services.AddControllers().AddJsonOptions(options =>
 {

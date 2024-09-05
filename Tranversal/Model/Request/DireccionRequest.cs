@@ -11,7 +11,7 @@ namespace Tranversal.Model.Request
         public string Calle { get; set; }
         public string Pais { get; set; }
         public string Ciudad { get; set; }
-        public int Departamento { get; set; }
-        public Guid DestinarioId { get; set; }
+        public string Departamento { get; set; }
+        public Guid? DestinarioId { get; set; }
     }
 }

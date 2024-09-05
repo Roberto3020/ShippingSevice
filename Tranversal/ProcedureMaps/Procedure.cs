@@ -8,5 +8,8 @@
         public const string InsertRemitente = "InsetRemitente";
 
         public const string CrearDestinario = "CrearDestinario";
+
+        public const string CrearDireccion = "CrearDireccion";
+
     }
 }
