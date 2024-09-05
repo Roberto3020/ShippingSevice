@@ -29,9 +29,10 @@ namespace BusinessLogic.Implements
         {
             var createRemitente = await _repository.CreateRemitente(request.remitente);
             var createDestinario = await _repositoryDestinario.CreateDestinario(request.destinario);
-            if (createRemitente.Succes > 0)
+            if (createRemitente.Succes > 0 && createDestinario.Succes > 0)
             {
                 request.paquete.RemitenteId = createRemitente.Id;
+                request.paquete.DestinarioId = createDestinario.Id;
                 var createPaquete = await _repositoryPaquete.CreatePaquete(request.paquete);
             };
 

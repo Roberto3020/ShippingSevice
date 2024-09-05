@@ -1,9 +1,10 @@
-﻿using Tranversal.Model.Request;
+﻿using Tranversal.Model;
+using Tranversal.Model.Request;
 
 namespace DataAccess.Abstract
 {
     public interface IPaqueteRepository
     {
-        Task<int> CreatePaquete(PaqueteRequest request);
+        Task<ResponseCreate> CreatePaquete(PaqueteRequest request);
     }
 }
