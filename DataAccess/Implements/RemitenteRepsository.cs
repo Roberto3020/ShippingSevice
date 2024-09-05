@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using DataAccess.Abstract;
+using System.Data;
 using Tranversal.Model.Request;
 using Tranversal.ProcedureMaps;
 
@@ -20,6 +21,7 @@ namespace DataAccess.Implements
             parameters.Add("Telefono", request.Telefono);
             parameters.Add("Departamento", request.Departamento);
             parameters.Add("Ciudad", request.Ciudad);
+            parameters.Add("Success", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
             await context.ExecSPAsync(Procedure.InsertRemitente, parameters);
             return parameters.Get<int>("Success");

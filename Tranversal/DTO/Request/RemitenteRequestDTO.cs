@@ -1,6 +1,6 @@
-﻿namespace Tranversal.Model.Request
+﻿namespace Tranversal.DTO.Request
 {
-    public class RemitenteRequest
+    public class RemitenteRequestDTO
     {
         public string NombreCompleto { get; set; }
 
