@@ -10,7 +10,7 @@ namespace Tranversal.Model.Request
     {
         public string Descripcion { get; set; }
         public double Peso { get; set; }
-        public int RemitenteId { get; set; }
+        public Guid RemitenteId { get; set; }
         public int DestinarioId { get; set; }
         public int TipoPaqueteId { get; set; }
         public int Cantidad { get; set; }

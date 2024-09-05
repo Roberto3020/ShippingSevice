@@ -27,9 +27,13 @@ namespace BusinessLogic.Implements
 
         public async Task<ServiceResponse<string>> CrearPaquete(PaqueteCreateRequest request)
         {
-            var createRemitente = _repository.CreateRemitente(request.remitente);
-            var createDestinario = _repositoryDestinario.CreateDestinario(request.destinario);
-            var createPaquete = _repositoryPaquete.CreatePaquete(request.paquete);
+            var createRemitente = await _repository.CreateRemitente(request.remitente);
+            var createDestinario = await _repositoryDestinario.CreateDestinario(request.destinario);
+            if (createRemitente.Succes > 0)
+            {
+                request.paquete.RemitenteId = createRemitente.Id;
+                var createPaquete = await _repositoryPaquete.CreatePaquete(request.paquete);
+            };
 
             return BuildResponse.Success(data: "Se creo exitosamente");
         }
