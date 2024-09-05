@@ -7,5 +7,7 @@
         public string Departamento { get; set; }
         public string Telefono { get; set; }
         public string Ciudad { get; set; }
+
+        public string Identificacion { get; set; }
     }
 }

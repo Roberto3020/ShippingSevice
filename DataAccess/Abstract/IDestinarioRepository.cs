@@ -9,6 +9,6 @@ namespace DataAccess.Abstract
 {
     public interface IDestinarioRepository
     {
-        Task<int> CreateDestinario(RemitenteRequest request);
+        Task<int> CreateDestinario(DestinarioRequest request);
     }
 }

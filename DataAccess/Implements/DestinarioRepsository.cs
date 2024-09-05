@@ -13,15 +13,15 @@ namespace DataAccess.Implements
         {
             this.context = context;
         }
-        public async Task<int> CreateDestinario(RemitenteRequest request)
+        public async Task<int> CreateDestinario(DestinarioRequest request)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("NombreCompleto", request.NombreCompleto);
+            parameters.Add("NombreCompleto", request.ContactoNombre);
             parameters.Add("Telefono", request.Telefono);
-            parameters.Add("Departamento", request.Departamento);
-            parameters.Add("Ciudad", request.Ciudad);
+            parameters.Add("Correo", request.Correo);
+            parameters.Add("IdDireccion", request.IdDireccion);
 
-            await context.ExecSPAsync(Procedure.InsertRemitente, parameters);
+            await context.ExecSPAsync(Procedure.CrearDestinario, parameters);
             return parameters.Get<int>("Success");
 
         }

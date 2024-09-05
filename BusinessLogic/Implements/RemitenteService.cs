@@ -26,7 +26,7 @@ namespace BusinessLogic.Implements
             try
             {
                 var result = await repository.CreateRemitente(request);
-                if(result > 0)
+                if(result.Succes > 0)
                 {
 
                     return BuildResponse.Success(data:"Se creo exitosamente");

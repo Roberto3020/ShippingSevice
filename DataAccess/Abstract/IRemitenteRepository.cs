@@ -1,9 +1,10 @@
-﻿using Tranversal.Model.Request;
+﻿using Tranversal.Model;
+using Tranversal.Model.Request;
 
 namespace DataAccess.Abstract
 {
     public interface IRemitenteRepository
     {
-        Task<int> CreateRemitente(RemitenteRequest request);
+        Task<ResponseCreate> CreateRemitente(RemitenteRequest request);
     }
 }
